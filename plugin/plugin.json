@@ -1,0 +1,6 @@
+{
+  "publicComponents": {
+    "signature-plugin": "components/signature/index"
+  },
+  "main": "index.js"
+}

@@ -1,0 +1,23 @@
+<view class="container">
+  <swiper bindchange="swiperChange" class='swiper' duration='150' interval='0' style='height:calc(100vh - {{boxHeight}}rpx)' display-multiple-items="1">
+    <swiper-item wx:for="{{images}}" wx:key="{{index}}">
+      <image class='image' data-src='{{item}}' mode='aspectFit' src='{{item}}' bindtap='previewImage'></image>
+    </swiper-item>
+  </swiper>
+  <view class='num'>
+    <text>{{currentIndex+1}}</text>
+    <text>/{{images.length}}</text>
+  </view>
+  <view class='bottom-btn'>
+    <button bindtap='signature' class='btn bottom-btn-color btn__active'>点击签名</button>
+    <button bindtap='completeSign' class='btn bottom-btn-color {{signDone?"btn__active":"btn__unactive"}}'>确认完成</button>
+  </view>
+  <view class='img-pop' wx:if="{{currentImage != ''}}">
+    <image class='currentImage' bindtap='choosePosition' src='{{currentImage}}' style='width:{{imageWidth}}px;height:{{imageHeight}}px'></image>
+    <view class='closePop' bindtap='clickClosePopBtn'>
+      <text>请在图片上点击选择签名位置</text>
+      <!-- <image class='close' src='/images/close.png'></image> -->
+    </view>
+  </view>
+  <canvas canvas-id='resultCanvas' class='result-canvas' id='resultCanvas' style='width:{{imageCanvasW}}px;height:{{imageCanvasH}}px'></canvas>
+</view>

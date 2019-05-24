@@ -1,0 +1,47 @@
+{
+	"miniprogramRoot": "miniprogram/",
+	"pluginRoot": "plugin/",
+	"compileType": "plugin",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"checkInvalidKey": true
+	},
+	"appid": "wx406d91fa2ad33694",
+	"projectname": "sognaturePlugin",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/index/index",
+					"query": "imgList=https://tc-buck-1254728086.cos.ap-shanghai.myqcloud.com/0.20915230176731803.o6zAJs6rYfmQBMEnvTtgIxjYALP8.nHBAyLgGdx5Uca5921c5bf953241a579714ae1451e47.png,https://tc-buck-1254728086.cos.ap-shanghai.myqcloud.com/files/4bedb6885f5b42f9bebc9521234a1f5a.jpg&targetId=4&targetStyle=s",
+					"scene": null
+				}
+			]
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": []
+		}
+	}
+}
