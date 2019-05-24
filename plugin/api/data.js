@@ -33,6 +33,7 @@ function myShowModal(e, n, o, c) {
     content: e,
     showCancel: i,
     confirmText: r,
+    confirmColor:"#108ee9",
     success: function(t) {
       t.confirm ? n && "function" == typeof n && n() : t.cancel && o && "function" == typeof o && o()
     }

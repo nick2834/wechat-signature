@@ -19,7 +19,7 @@ Component({
     bShowBack: !0,
     boxHeight: 200
   },
-  attached: function () {
+  attached: function() {
     dataJson.initData(),
       this.signatureImage = null,
       this.imagesKeys = [],
@@ -48,7 +48,7 @@ Component({
   ready() {
     var _this = this;
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         if (dataJson.compareVersion("2.0.4", res.SDKVersion) == 1) dataJson.myShowModal("你微信版本较低，可能无法正常使用签名功能，请升级到最新版微信！")
         _this.windowWidth = res.windowWidth,
           _this.windowHeight = res.windowHeight,
@@ -88,31 +88,47 @@ Component({
       })
     },
     // 签名按钮
-    signature: function () {
+    signature: function() {
       var _this = this;
-      _this.currentImage = _this.imagesValues[_this.data.currentIndex],
-        wx.downloadFile({
-          url: _this.currentImage,
-          success(res) {
-            console.log(res)
-            wx.getImageInfo({
-              src: res.tempFilePath,
-              success: res => {
-                console.log(res)
-                _this.currentImagePath = res.path;
-                var iWidth = res.width,
-                  iHeight = res.height,
-                  winW = _this.windowWidth,
-                  winH = _this.windowHeight - 70;
-                iWidth <= iHeight ? (winW = winH * (iWidth / iHeight)) > _this.windowWidth && (winH = (winW = _this.windowWidth) * (iHeight / iWidth)) : winH = winW * (iHeight / iWidth);
-                _this.startX = (_this.windowWidth - winW) / 2,
-                _this.startY = (_this.windowHeight - 70 - winH) / 2
-                console.log(_this.startX)
-                console.log(_this.startY)
-              }
-            })
-          }
-        })
+      _this.currentImage = _this.imagesValues[_this.data.currentIndex];
+      wx.showToast({
+        title: '加载中',
+        mask: true,
+        icon: "loading",
+        duration: 5000
+      })
+      const fileLoad = wx.downloadFile({
+        url: _this.currentImage,
+        success: res => {
+          wx.getImageInfo({
+            src: res.tempFilePath,
+            success: res => {
+              wx.hideToast();
+              _this.currentImagePath = res.path;
+              var iWidth = res.width,
+                iHeight = res.height,
+                winW = _this.windowWidth,
+                winH = _this.windowHeight - 70;
+              iWidth <= iHeight ? (winW = winH * (iWidth / iHeight)) > _this.windowWidth && (winH = (winW = _this.windowWidth) * (iHeight / iWidth)) : winH = winW * (iHeight / iWidth);
+              _this.startX = (_this.windowWidth - winW) / 2;
+              _this.startY = (_this.windowHeight - 70 - winH) / 2
+              console.log(_this.startX)
+              console.log(_this.startY)
+            }
+          })
+        },
+        fail: err => {
+          fileLoad.abort()
+        }
+      })
+      // fileLoad.onProgressUpdate((res) => {
+      //   console.log(res)
+      //   wx.showToast({
+      //     title: `正在下载${res.progress}%`,
+      //     icon: 'loading',
+      //     duration: 60000
+      //   });
+      // })
     },
   }
 })
