@@ -10,7 +10,7 @@ var obj = {
 function setOptions(n) {
   obj.images = n.images
 }
-
+//插件初始变量
 function getOptions() {
   return obj
 }
